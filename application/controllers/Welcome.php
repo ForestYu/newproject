@@ -24,7 +24,7 @@ class Welcome extends CI_Controller {
 	}
 
 	/**
-	 * ciœ‘ æ
+	 * ciÂºÄÂßã
 	 */
 	public function show(){
 		var_dump($_SERVER);
