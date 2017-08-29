@@ -76,9 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => '',
+	'username' => 'root',
 	'password' => '',
-	'database' => '',
+	'database' => 'test',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,4 +93,43 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
+);
+//备用数据库设置
+$db['default']['failover'] = array(
+	array(
+		'hostname' => 'localhost1',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'test',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => '',
+		'pconnect' => TRUE,
+		'db_debug' => TRUE,
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE
+	),
+	array(
+		'hostname' => 'localhost2',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'testtwo',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => '',
+		'pconnect' => TRUE,
+		'db_debug' => TRUE,
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE
+	)
 );
