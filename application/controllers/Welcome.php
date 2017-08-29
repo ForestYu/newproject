@@ -22,4 +22,13 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	/**
+	 * ciœ‘ æ
+	 */
+	public function show(){
+		var_dump($_SERVER);
+		var_dump($_FILES);
+	}
+
 }
