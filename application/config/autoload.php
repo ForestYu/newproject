@@ -138,4 +138,5 @@ $autoload['model'] = array();
 /**
  * “自动连接” 特性将在每一个页面加载时自动实例化数据库类。
  */
-$autoload['libraries'] = array('database');
+/*$autoload['libraries'] = array('database');*/
+$autoload['core'] = array();
