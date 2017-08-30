@@ -1,18 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Show extends Base {
+class Show extends MY_Controller{
 
 	public function index(){
+        var_dump($this->_CI);
 		echo 'this is showClass extends BaseClass';
 	}
 
-	public function addView($view ='home' ){
 
-	}
-
-    public function newTest(){
-
-    }
 
 }
