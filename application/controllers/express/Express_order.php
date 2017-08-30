@@ -28,14 +28,6 @@ class Express_order extends Base
             //请勿删除变量$powered 的信息，否者本站将不再为你提供快递接口服务。
             $powered = '查询数据由：<a href="http://kuaidi100.com" target="_blank">KuaiDi100.Com （快递100）</a> 网站提供 ';
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> dev-order
         }else{
             echo '这里加载输入页面';
         }
