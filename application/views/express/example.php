@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>快递单号获取接口API - Example</title>
-	<script type="text/javascript" src="http://adi.dev/application/views/src/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="<?php echo STATIC_SRC;?>js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function()
 	{
@@ -13,9 +13,12 @@
 
 			var expressid = $("#expressid").val();
             var expressno = $("#expressno").val();
-			$.get("get.php",{com:expressid,nu:expressno},
+			$.post("check_order",{com:expressid,nu:expressno},
 				function(data)
 				{
+					console.log(data);
+
+
 					$("#retData").html(data);
 
 					var retData = eval(data);
@@ -69,7 +72,9 @@
 <body>
 <div class="result">
 	<div class="logo"><a href="http://www.kuaidi100.com/" title="">快递100</a><br />
-    快递100提供一站式的快递查询服务，涵盖近百家常用快递公司，支持手机查快递。并为B2C等网络应用提供免费的快递查询接口（API）。aaa</div>
+    快递100提供一站式的快递查询服务，涵盖近百家常用快递公司，支持手机查快递。并为B2C等网络应用提供免费的快递查询接口（API）。
+	<?php echo $this->config->item('base_urla');?>
+    </div>
 <div class="seatchForm">
 		<div class="txtURL">
           <p>快递公司：
