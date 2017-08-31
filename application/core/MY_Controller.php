@@ -8,6 +8,7 @@ class MY_Controller extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->_CI = &get_instance();
+        $this->load->helper('url');//引入辅助类（help文件夹下面的url_helper.php  作用是在模板中生成地址）
     }
 
 

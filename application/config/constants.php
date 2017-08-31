@@ -87,3 +87,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 //-----------------快递100需要参数--------------------
 define("EXPRESS_APP_KEY", "XXXXXXXXX");//开发完了之后需要的时候再拿
+define("STATIC_SRC", "/application/views/src/");//定义样式文件地址
+

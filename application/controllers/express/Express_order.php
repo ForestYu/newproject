@@ -29,7 +29,6 @@ class Express_order extends MY_Controller
             $typeNu = trim($_POST["nu"]);  //快递单号
 
 
-
             $AppKey=EXPRESS_APP_KEY;//请将XXXXXX替换成您在http://kuaidi100.com/app/reg.html申请到的KEY
             $url ='http://api.kuaidi100.com/api?id='.$AppKey.'&com='.$typeCom.'&nu='.$typeNu.'&show=0&muti=1&order=asc';
 
@@ -40,6 +39,7 @@ class Express_order extends MY_Controller
             exit;
         }else{
             echo '这里加载输入页面';
+            echo STATIC_SRC;
 
             /*$this->load->library('parser');*/
             $params = array('name' => "张山", "phone"=>"15565896895");
@@ -47,6 +47,7 @@ class Express_order extends MY_Controller
             /*$this->parser->parser('express\example.html',$params);*/
         }
     }
+
 
 
     /**
