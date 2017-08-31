@@ -69,7 +69,7 @@
 <body>
 <div class="result">
 	<div class="logo"><a href="http://www.kuaidi100.com/" title="">快递100</a><br />
-    快递100提供一站式的快递查询服务，涵盖近百家常用快递公司，支持手机查快递。并为B2C等网络应用提供免费的快递查询接口（API）。</div>
+    快递100提供一站式的快递查询服务，涵盖近百家常用快递公司，支持手机查快递。并为B2C等网络应用提供免费的快递查询接口（API）。aaa</div>
 <div class="seatchForm">
 		<div class="txtURL">
           <p>快递公司：
