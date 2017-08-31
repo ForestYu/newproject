@@ -7,15 +7,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Express_order extends MY_Controller
 {
 
+    public $my_post;
+    public $my_get;
+
     public function __construct(){
         # code...
         parent::__construct();
-
+        $this->my_post = $this->input->post('',TRUE);//将所有post数据过滤之后使用
+        $this->my_get = $this->input->get('',TRUE);//将所有get数据过滤之后使用
     }
 
 
     public function index(){
         echo 'this is express/Express_order';
+    }
+
+    /**
+     * 打印显示收到的参数
+     * [show description]
+     * @return [type] [description]
+     */
+    public function show($a=1,$b=2,$c=3){
+      print_r($a);
+      var_dump($b);
+      var_dump($c);
+      var_dump($this->input->server('HTTP_HOST'));
+      var_dump($this->input->ip_address());
+      var_dump($this->input->user_agent());
     }
 
     /**
@@ -25,8 +43,14 @@ class Express_order extends MY_Controller
      */
     public function check_order(){
         if($_POST){
-            $typeCom = trim($_POST["com"]);//快递公司
-            $typeNu = trim($_POST["nu"]);  //快递单号
+            /*$typeCom = trim($_POST["com"]);//快递公司
+            $typeNu = trim($_POST["nu"]);  //快递单号*/
+
+            //使用ci框架的输入类来过滤可能存在的恶意输入注入攻击等，而不是直接使用$_POST 或者 $_GET
+            $typeCom = trim($this->input->post('com',TRUE));
+            $typeNu = trim($this->input->post('nu',TRUE));
+
+
 
 
 
@@ -40,11 +64,8 @@ class Express_order extends MY_Controller
             exit;
         }else{
             echo '这里加载输入页面';
-
-            /*$this->load->library('parser');*/
             $params = array('name' => "张山", "phone"=>"15565896895");
             $this->load->view('express\example.php',$params);
-            /*$this->parser->parser('express\example.html',$params);*/
         }
     }
 
