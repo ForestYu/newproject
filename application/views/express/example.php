@@ -59,7 +59,7 @@
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
-	padding: 10px;
+	/* padding: 10px; */
 	font-family: "微软雅黑";
 }
     .txtURL {
@@ -86,9 +86,6 @@
 		  	<option value="yunda">韵达快递</option>
 			<option value="anxindakuaixi">安信达</option>
 			<option value="huitongkuaidi">百世汇通</option>
-
-
-
 		  </select>
 		  快递单号：<input name="expressno" type="text" id="expressno" value="<?php echo($num) ?>"/>
 		  </p>
@@ -100,6 +97,20 @@
 		<p>获取范例：</p>
 		<div id="retData"></div>
 		<p>快递100查询接口(API), 全自动识别验证系统。快速返回快递单号查询结果。http://www.kuaidi100.com</p>
+		<table border="1" style="border:1px solid gray;">
+			<tr>
+				<th>信息id</th>
+				<th>来源ip</th>
+				<th>访问时间</th>
+			</tr>
+			<?php foreach ($list as $v) { ?>
+				<tr>
+					<td><?php echo $v['access_id']; ?></td>
+					<td><?php echo $v['client_ip_str']; ?></td>
+					<td><?php echo date('Y-m-d H:i:s',$v['add_time']); ?></td>
+				</tr>
+			<?php } ?>
+		</table>
 	</div>
 </div>
 </body>
