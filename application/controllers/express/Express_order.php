@@ -63,12 +63,10 @@ class Express_order extends MY_Controller
             exit;
         }else{
             echo '这里加载输入页面';
-<<<<<<< HEAD
-=======
             echo STATIC_SRC;
 
             /*$this->load->library('parser');*/
->>>>>>> dev-url
+
             $params = array('name' => "张山", "phone"=>"15565896895");
             $this->load->view('express\example.php',$params);
         }
