@@ -11,6 +11,8 @@ class MY_Controller extends CI_Controller{
     }
 
 
+    //这里居然昨天发生冲突，研究一下
+
 }
 
 
