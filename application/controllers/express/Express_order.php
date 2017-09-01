@@ -42,21 +42,27 @@ class Express_order extends MY_Controller
      * @return [type] [description]
      */
     public function check_order(){
+      $this->load->model('express/Express_model');//实例化express_model
         if($_POST){
             $this->load->library('Util');//实例化工具类
-
             //使用ci框架的输入类来过滤可能存在的恶意输入注入攻击等，而不是直接使用$_POST 或者 $_GET
             $typeCom = trim($this->input->post('com',TRUE));
             $typeNu = trim($this->input->post('nu',TRUE));
 
-            //获取用户相关信息
-            $time = time();//当前时间
+            //获取访问者IP并且记录信息
             $user_ip =  $this->util->get_client_ip();//获取访问者ip
-
-
+            if(!empty($user_ip)){
+              $re = $this->Express_model->add_access_message($user_ip);
+              if($re==false){
+                echo '记录访问IP失败';
+                exit;
+              }
+            }else{
+              echo "未知用户";
+              exit;
+            }
+            //判断是否是那几个只能通过HTMapiurl访问的类型
             $is_other_way = in_array($typeCom, array('shentong','shunfeng','yuantong','yunda'));
-
-
             $AppKey=EXPRESS_APP_KEY;//请将XXXXXX替换成您在http://kuaidi100.com/app/reg.html申请到的KEY
             if($is_other_way){//有几家快递公司要用跳转api来请求
               $url = 'http://www.kuaidi100.com/applyurl?key='.$AppKey.'&com='.$typeCom.'&nu='.$typeNu.'';
@@ -81,10 +87,12 @@ class Express_order extends MY_Controller
             $this->load->library('Util');
             $user_ip =  $this->util->get_client_ip();//获取访问者ip
 
+            var_dump(ip2long($user_ip));
             var_dump($user_ip);
             /*$this->load->library('parser');*/
-
-            $params = array('name' => "张山", "num"=>"71094800004502");
+            $re = $this->Express_model->get_access_list();
+            $params['list'] = $re;
+            $params['num'] = "71094800004502";
             $this->load->view('express\example.php',$params);
         }
     }
