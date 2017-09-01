@@ -43,26 +43,45 @@ class Express_order extends MY_Controller
      */
     public function check_order(){
         if($_POST){
-            /*$typeCom = trim($_POST["com"]);//快递公司
-            $typeNu = trim($_POST["nu"]);  //快递单号*/
+            $this->load->library('Util');//实例化工具类
 
             //使用ci框架的输入类来过滤可能存在的恶意输入注入攻击等，而不是直接使用$_POST 或者 $_GET
             $typeCom = trim($this->input->post('com',TRUE));
             $typeNu = trim($this->input->post('nu',TRUE));
 
+            //获取用户相关信息
+            $time = time();//当前时间
+            $user_ip =  $this->util->get_client_ip();//获取访问者ip
+
+
+            $is_other_way = in_array($typeCom, array('shentong','shunfeng','yuantong','yunda'));
+
 
             $AppKey=EXPRESS_APP_KEY;//请将XXXXXX替换成您在http://kuaidi100.com/app/reg.html申请到的KEY
-            $url ='http://api.kuaidi100.com/api?id='.$AppKey.'&com='.$typeCom.'&nu='.$typeNu.'&show=2&muti=1&order=asc';
-
+            if($is_other_way){//有几家快递公司要用跳转api来请求
+              $url = 'http://www.kuaidi100.com/applyurl?key='.$AppKey.'&com='.$typeCom.'&nu='.$typeNu.'';
+            }else{
+              $url ='http://api.kuaidi100.com/api?id='.$AppKey.'&com='.$typeCom.'&nu='.$typeNu.'&show=2&muti=1&order=asc';
+            }
             //请勿删除变量$powered 的信息，否者本站将不再为你提供快递接口服务。
             $powered = '查询数据由：<a href="http://kuaidi100.com" target="_blank">KuaiDi100.Com （快递100）</a> 网站提供 ';
             $re = $this->get_msg($url,$powered);
-            echo $re;
+            if($is_other_way){//判断是否通过其他方式查询
+              echo "<iframe frameborder=0 width=800 height=400 marginheight=0 marginwidth=0 scrolling=no src=".$re."></iframe><br />".$powered;
+            }else{
+              echo '<div style="width=800;padding: 5px 18%;">'.$re."</div>".$powered;
+            }
             exit;
         }else{
             echo '这里加载输入页面';
             echo STATIC_SRC;
+            echo site_url('express\example.php');
+            echo '<br />';
 
+            $this->load->library('Util');
+            $user_ip =  $this->util->get_client_ip();//获取访问者ip
+
+            var_dump($user_ip);
             /*$this->load->library('parser');*/
 
             $params = array('name' => "张山", "num"=>"71094800004502");
@@ -75,7 +94,7 @@ class Express_order extends MY_Controller
     /**
      * 请求借口之后获取返回信息(采集函数)
      */
-    private function get_msg($url,$powered){
+    private function get_msg($url){
         if (function_exists('curl_init') == 1){
           $curl = curl_init();
           curl_setopt ($curl, CURLOPT_URL, $url);
@@ -94,8 +113,8 @@ class Express_order extends MY_Controller
           //
           $get_content = "nothing get!";
         }
-        return $get_content.'<br/>'. $powered;
-        return $get_content . '<br/>' .'-url-'.$url.'<br />'. $powered;
+        return $get_content;
+        /*return $get_content . '<br/>' .'-url-'.$url.'<br />';*/
 
         /*print_r($get_content . '<br/>' . $powered);
         exit();*/

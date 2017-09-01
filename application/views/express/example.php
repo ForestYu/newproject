@@ -59,7 +59,7 @@
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
-	padding: 10px;
+	/* padding: 10px; */
 	font-family: "微软雅黑";
 }
     .txtURL {
