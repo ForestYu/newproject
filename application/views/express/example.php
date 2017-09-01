@@ -78,8 +78,19 @@
 <div class="seatchForm">
 		<div class="txtURL">
           <p>快递公司：
-          <input name="expressid" type="text" id="expressid" value="<?php echo($name); ?>"/>
-		  快递单号：<input name="expressno" type="text" id="expressno" value="<?php echo($phone) ?>"/>
+		  <select id="expressid" name="expressid">
+		  	<!-- <option value="ems">EMS</option> -->
+		  	<option value="shentong">申通快递</option>
+		  	<option value="shunfeng">顺风快递</option>
+		  	<option value="yuantong">圆通快递</option>
+		  	<option value="yunda">韵达快递</option>
+			<option value="anxindakuaixi">安信达</option>
+			<option value="huitongkuaidi">百世汇通</option>
+
+
+
+		  </select>
+		  快递单号：<input name="expressno" type="text" id="expressno" value="<?php echo($num) ?>"/>
 		  </p>
           <p>说明：查询时需要发送两个参数：公司名（拼音或英文）；快递单号</p>
 </div>
